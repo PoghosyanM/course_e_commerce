@@ -1,0 +1,25 @@
+.header {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  padding: 16px 24px;
+  align-items: center;
+  .links {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 20px;
+    align-items: center;
+    .link {
+      color: rgb(214, 29, 29);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .active {
+      color: rgb(3, 115, 143);
+    }
+    .anticon {
+      font-size: 35px;
+      color: cadetblue;
+    }
+  }
+}

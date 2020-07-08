@@ -1,27 +1,23 @@
-import React from "react";
-import Counter from "./components/counter/Counter";
+import React from 'react'
+import Header from './components/header/Header'
+import { Route, Switch } from 'react-router-dom'
+import Shop from './pages/shop/Shop'
+import ContactUs from './pages/contactUs/ContactUs'
+import Error404 from './components/error/Error404'
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Counter num={1} />
-        {/* <Counter num={2} />
-        <Counter num={3} />
-        <Counter num={4} />
-        <Counter num={5} /> */}
+        <Header />
+        <Switch>
+          <Route path="/" component={Shop} exact />
+          <Route path="/contactUs" component={ContactUs} />
+          <Route component={Error404} />
+        </Switch>
       </div>
-    );
+    )
   }
 }
 
-// function App() {
-//   console.log(a + b);
-//   return (
-//     <div>
-//       <Counter />
-//     </div>
-//   );
-// }
-
-export default App;
+export default App
