@@ -1,8 +1,8 @@
 import React from 'react'
 import shopLogo from './../../assets/images/shop-icon.png'
-import './header.scss'
 import { NavLink } from 'react-router-dom'
 import { ShoppingCartOutlined } from '@ant-design/icons'
+import './header.scss'
 
 class Header extends React.Component {
   render() {
