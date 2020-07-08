@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
 import { Route, Switch } from 'react-router-dom'
 import Shop from './pages/shop/Shop'
 import ContactUs from './pages/contactUs/ContactUs'
@@ -15,6 +16,7 @@ class App extends React.Component {
           <Route path="/contactUs" component={ContactUs} />
           <Route component={Error404} />
         </Switch>
+        <Footer />
       </div>
     )
   }
