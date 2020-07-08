@@ -12,7 +12,7 @@ class Header extends React.Component {
           <img width="50" src={shopLogo} alt="Shop" />
         </div>
         <div className="links">
-          <NavLink className="link" activeClassName="active" to="/">
+          <NavLink exact className="link" activeClassName="active" to="/">
             Shop
           </NavLink>
           <NavLink className="link" activeClassName="active" to="/contactUs">
