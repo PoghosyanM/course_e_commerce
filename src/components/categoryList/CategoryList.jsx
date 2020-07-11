@@ -3,7 +3,6 @@ import SHOP_DATA from '../../shopData/shopData'
 
 export class CategoryItem extends Component {
   render() {
-    console.log(this.props.match.params.category)
     const { match } = this.props
     const category = SHOP_DATA[match.params.category]
     return (
@@ -14,7 +13,7 @@ export class CategoryItem extends Component {
             return (
               <div key={item.id}>
                 <h2>{item.name}</h2>
-                <img src={item.imageUrl} alt="" />
+                <img src={item.imageUrl} alt={item.name} />
                 <h4>{item.price} $</h4>
               </div>
             )
