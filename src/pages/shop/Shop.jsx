@@ -20,7 +20,7 @@ class Shop extends Component {
                 <Link to={`/shop/${category.routeName}`}>
                   <h2>{category.title}</h2>
                 </Link>
-                <img src={chosenImage} alt="category image" />
+                <img src={chosenImage} alt={category.title} />
               </div>
             )
           })}

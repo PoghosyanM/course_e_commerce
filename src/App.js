@@ -5,8 +5,15 @@ import Shop from './pages/shop/Shop'
 import ContactUs from './pages/contactUs/ContactUs'
 import Error404 from './components/error/Error404'
 import Footer from './footer/footer'
+import CategoryItem from './components/categoryList/CategoryList'
+import axios from 'axios'
 
 class App extends React.Component {
+  componentWillMount() {
+    axios('/').then((res) => {
+      console.log(res, 111)
+    })
+  }
   render() {
     return (
       <div>
