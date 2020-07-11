@@ -4,11 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import Shop from './pages/shop/Shop'
 import ContactUs from './pages/contactUs/ContactUs'
 import Error404 from './components/error/Error404'
-<<<<<<< HEAD
 import Footer from './footer/footer'
-=======
-import CategoryItem from './components/categoryItem/CategoryItem'
->>>>>>> dc816c531dd972922baeda82b6c79e52898651ae
 
 class App extends React.Component {
   render() {
@@ -22,7 +18,7 @@ class App extends React.Component {
           <Route component={Error404} />
 
         </Switch>
-          <div><Footer /></div>
+          <Footer />
       </div>
 
   )
