@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import SHOP_DATA from '../../shopData/shopData'
+import React from 'react'
 import './shop.scss'
 import { getRandomArbitrary } from '../../utils/helpers'
 import { Link } from 'react-router-dom'
 
-class Shop extends Component {
+class Shop extends React.Component {
   render() {
+    const { shopData } = this.props
     return (
       <div className="shop-content">
         <h1>Categories</h1>
         <div className="categories-content">
-          {Object.keys(SHOP_DATA).map((category) => {
-            category = SHOP_DATA[category]
+          {Object.keys(shopData).map((category) => {
+            category = shopData[category]
             const chosenImage =
               category.items[getRandomArbitrary(0, category.items.length - 1)]
                 .imageUrl

@@ -1,6 +1,6 @@
 import React from 'react'
 import shopLogo from './../../assets/images/shop-icon.png'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import './header.scss'
 
@@ -8,11 +8,11 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <div>
+        <Link to="/shop">
           <img width="50" src={shopLogo} alt="Shop" />
-        </div>
+        </Link>
         <div className="links">
-          <NavLink exact className="link" activeClassName="active" to="/shop">
+          <NavLink className="link" activeClassName="active" to="/shop">
             Shop
           </NavLink>
           <NavLink className="link" activeClassName="active" to="/contactUs">

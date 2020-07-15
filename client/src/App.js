@@ -9,19 +9,40 @@ import CategoryItem from './components/categoryList/CategoryList'
 import axios from 'axios'
 
 class App extends React.Component {
+  state = {
+    shopData: {},
+  }
+
   componentDidMount() {
-    axios('/shop').then((res) => {
-      console.log(res)
-    })
+    axios('/shop')
+      .then((response) => {
+        this.setState({
+          shopData: response.data,
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   render() {
+    const { shopData } = this.state
     return (
       <div>
         <Header />
         <Switch>
-          <Route path="/shop" component={Shop} exact />
-          <Route path="/shop/:category" component={CategoryItem} exact />
+          <Route
+            path="/shop"
+            component={() => <Shop shopData={shopData} />}
+            exact
+          />
+          <Route
+            path="/shop/:category"
+            component={(props) => (
+              <CategoryItem shopData={shopData} {...props} />
+            )}
+            exact
+          />
           <Route path="/contactUs" component={ContactUs} />
           <Route component={Error404} />
         </Switch>

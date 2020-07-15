@@ -1,6 +1,6 @@
 import React from 'react'
-import FollowContact from './followContact/followContact'
-import Partner from './partner/partner'
+// import FollowContact from './followContact/followContact'
+// import Partner from './partner/partner'
 import Paymethods from './paymethods/paymethods'
 
 class Footer extends React.Component {
