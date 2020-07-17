@@ -27,6 +27,7 @@ class App extends React.Component {
 
   render() {
     const { shopData } = this.state
+
     return (
       <div>
         <Header />
@@ -35,7 +36,9 @@ class App extends React.Component {
             path="/shop"
             component={() => <Shop shopData={shopData} />}
             exact
+
           />
+
           <Route
             path="/shop/:category"
             component={(props) => (

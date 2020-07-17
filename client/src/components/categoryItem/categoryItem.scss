@@ -1,0 +1,7 @@
+.shop-category-list-items {
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+  justify-items: center;
+}

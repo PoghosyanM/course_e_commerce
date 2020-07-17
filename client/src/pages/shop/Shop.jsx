@@ -1,27 +1,23 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import './shop.scss'
-import { getRandomArbitrary } from '../../utils/helpers'
-import { Link } from 'react-router-dom'
+import CategoryItem from "../../components/categoryItem/CategoryItem";
 
 class Shop extends React.Component {
   render() {
     const { shopData } = this.props
+      console.log(shopData)
     return (
       <div className="shop-content">
         <h1>Categories</h1>
         <div className="categories-content">
+
           {Object.keys(shopData).map((category) => {
             category = shopData[category]
-            const chosenImage =
-              category.items[getRandomArbitrary(0, category.items.length - 1)]
-                .imageUrl
+
             return (
-              <div key={category.id}>
-                <Link to={`/shop/${category.routeName}`}>
-                  <h2>{category.title}</h2>
-                </Link>
-                <img src={chosenImage} alt={category.title} />
-              </div>
+                <div key={category.id}>
+              <CategoryItem  category={category}  /><br/>
+                    </div>
             )
           })}
         </div>
