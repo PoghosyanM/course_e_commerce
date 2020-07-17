@@ -5,12 +5,13 @@ import Shop from './pages/shop/Shop'
 import ContactUs from './pages/contactUs/ContactUs'
 import Error404 from './components/error/Error404'
 import Footer from './components/footer/footer'
-import CategoryItem from './components/categoryList/CategoryList'
+import CategoryList from './components/categoryList/CategoryList'
 import axios from 'axios'
 
 class App extends React.Component {
   state = {
     shopData: {},
+    cart: [],
   }
 
   componentDidMount() {
@@ -25,11 +26,24 @@ class App extends React.Component {
       })
   }
 
+  addItemToCart = (chosenItem) => {
+    const isExsistChosenItemInCart = this.state.cart.some(
+      (item) => item.id === chosenItem.id
+    )
+    if (isExsistChosenItemInCart) {
+      return
+    }
+
+    this.setState({
+      cart: [...this.state.cart, chosenItem],
+    })
+  }
+
   render() {
-    const { shopData } = this.state
+    const { shopData, cart } = this.state
     return (
       <div>
-        <Header />
+        <Header cart={cart} />
         <Switch>
           <Route
             path="/shop"
@@ -39,9 +53,12 @@ class App extends React.Component {
           <Route
             path="/shop/:category"
             component={(props) => (
-              <CategoryItem shopData={shopData} {...props} />
+              <CategoryList
+                addItemToCart={this.addItemToCart}
+                shopData={shopData}
+                {...props}
+              />
             )}
-            exact
           />
           <Route path="/contactUs" component={ContactUs} />
           <Route component={Error404} />

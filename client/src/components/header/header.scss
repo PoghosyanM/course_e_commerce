@@ -22,4 +22,19 @@
       color: cadetblue;
     }
   }
+  .shopping-cart-content {
+    position: relative;
+    .chosen-items-count {
+      position: absolute;
+      min-width: 20px;
+      right: -5px;
+      top: -5px;
+      background-color: #f58e69;
+      border-radius: 50%;
+      display: inline-block;
+      text-align: center;
+      font-weight: 500;
+      color: #ffffff;
+    }
+  }
 }
