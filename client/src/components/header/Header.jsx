@@ -3,10 +3,16 @@ import shopLogo from './../../assets/images/shop-icon.png'
 import { NavLink, Link } from 'react-router-dom'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import './header.scss'
-import MiniCart from "../categoryItem/miniCart/MiniCart";
+import MiniCart from "./../miniCart/MiniCart";
 
 
-const Header = ({ cart }) => {
+
+class Header extends React.Component   {
+  
+render(){
+  const { cart, setShowMiniCart, showMiniCart } = this.props
+  
+  
 
   return (
     <div className="header">
@@ -27,15 +33,19 @@ const Header = ({ cart }) => {
           Sign Up
         </NavLink>
 <div className="miniCartHide">
-        <div onClick={() =>{}}  className="shopping-cart-content">
+        <div onClick={() =>{setShowMiniCart()}}  className="shopping-cart-content">
           <span className="chosen-items-count">{cart.length}</span>
           <ShoppingCartOutlined />
         </div>
-<MiniCart cart={cart}/>
+
+{showMiniCart? <MiniCart cart={cart} /> : null }
+        
+
 </div>
       </div>
     </div>
   )
+}
 }
 
 export default Header

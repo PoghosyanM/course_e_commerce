@@ -7,13 +7,13 @@ import Error404 from './components/error/Error404'
 import Footer from './components/footer/footer'
 import CategoryList from './components/categoryList/CategoryList'
 import axios from 'axios'
-import MiniCart from "./components/categoryItem/miniCart/MiniCart";
+
 
 class App extends React.Component {
   state = {
     shopData: {},
     cart: [],
-
+    showMiniCart: false
   }
 
   componentDidMount() {
@@ -41,12 +41,27 @@ class App extends React.Component {
     })
   }
 
+
+  setShowMiniCart = ()=>{
+    const {showMiniCart} = this.state
+    if(showMiniCart === false){
+  this.setState({
+    showMiniCart: true
+            
+      })
+    }else{
+      this.setState({
+        showMiniCart: false
+    })
+    }}
+
+
   render() {
-    const { shopData, cart } = this.state
-    console.log(cart)
+    const { shopData, cart, showMiniCart } = this.state
+    console.log(showMiniCart)
     return (
       <div>
-        <Header cart={cart} />
+        <Header cart={cart} showMiniCart={showMiniCart} setShowMiniCart={this.setShowMiniCart} />
 
         <Switch>
           <Route

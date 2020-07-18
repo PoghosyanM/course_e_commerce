@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import './CategoryItem.scss'
+import './categoryItem.scss'
 
 const CategoryItem = ({ chosenItems, routeName, title }) => {
   return (
