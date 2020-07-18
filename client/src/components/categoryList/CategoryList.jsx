@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react'
 import './categoryList.scss'
 import CategoryListItem from '../categoryListItem/CategoryListItem'
 
-export class CategoryItem extends Component {
+class CategoryList extends Component {
   render() {
-    const { match, shopData } = this.props
+    const { match, shopData, addItemToCart } = this.props
     const category = shopData[match.params.category]
     if (!category) {
       return null
@@ -13,10 +13,10 @@ export class CategoryItem extends Component {
       <div className="category-list-content">
         <h1>{category.title}</h1>
         <div key={category.id} className="category-list-items">
-          {category.items.map(({ id, ...item }) => {
+          {category.items.map((item) => {
             return (
-              <Fragment key={id}>
-                <CategoryListItem {...item} />
+              <Fragment key={item.id}>
+                <CategoryListItem addItemToCart={addItemToCart} item={item} />
               </Fragment>
             )
           })}
@@ -27,4 +27,4 @@ export class CategoryItem extends Component {
   }
 }
 
-export default CategoryItem
+export default CategoryList

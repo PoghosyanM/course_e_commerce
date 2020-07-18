@@ -1,0 +1,36 @@
+.miniCart{
+  background-color: #03738e30;
+  width: 350px;
+  height: 300px;
+  overflow: auto;
+  position: absolute;
+  top: 40px;
+  z-index: 999;
+  right: -5px;
+  .miniCartItem{
+
+      display: grid;
+    grid-template-columns: 0.9fr 1.1fr 2fr auto;
+
+      gap: 1px 1px;
+      grid-template-areas: "nkar anun . ." "nkar gin . ." ". . . .";
+
+
+
+
+  img{
+    width: 40px;
+    padding: 5px;
+  }
+  h4, h5 {
+    padding: 0;
+    margin: 0;
+  }}
+}
+
+.nkar { grid-area: nkar; }
+
+.anun { grid-area: anun; }
+
+.gin { grid-area: gin; }
+

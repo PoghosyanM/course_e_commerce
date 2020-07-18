@@ -1,0 +1,33 @@
+.category-list-item-content {
+  .item-image-content {
+    position: relative;
+    text-align: center;
+    img {
+      object-fit: cover;
+    }
+    .add-to-cart-button {
+      display: none;
+      position: absolute;
+      z-index: 999;
+      bottom: 50px;
+      left: 15%;
+      width: 70%;
+      height: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 0;
+      outline: 0;
+      border-radius: 10px;
+    }
+    &:hover {
+      .add-to-cart-button {
+        display: block;
+        &:hover {
+          background-color: #f58e69;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
