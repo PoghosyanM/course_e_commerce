@@ -27,15 +27,49 @@ class App extends React.Component {
   }
 
   addItemToCart = (chosenItem) => {
-    const isExsistChosenItemInCart = this.state.cart.some(
+    const isExistChosenItemInCart = this.state.cart.some(
       (item) => item.id === chosenItem.id
     )
-    if (isExsistChosenItemInCart) {
+    if (isExistChosenItemInCart) {
       return
     }
 
     this.setState({
-      cart: [...this.state.cart, chosenItem],
+      cart: [...this.state.cart, { ...chosenItem, quantity: 1 }],
+    })
+  }
+
+  incrementCartItemQuantity = (chosenItem) => {
+    this.setState({
+      cart: this.state.cart.map((item) => {
+        if (item.id === chosenItem.id) {
+          return {
+            ...chosenItem,
+            quantity: chosenItem.quantity + 1,
+          }
+        }
+        return item
+      }),
+    })
+  }
+
+  decrementCartItemQuantity = (chosenItem) => {
+    if (chosenItem.quantity <= 1) {
+      this.setState({
+        cart: this.state.cart.filter((item) => item.id !== chosenItem.id),
+      })
+      return
+    }
+    this.setState({
+      cart: this.state.cart.map((item) => {
+        if (item.id === chosenItem.id) {
+          return {
+            ...chosenItem,
+            quantity: chosenItem.quantity - 1,
+          }
+        }
+        return item
+      }),
     })
   }
 
@@ -43,7 +77,11 @@ class App extends React.Component {
     const { shopData, cart } = this.state
     return (
       <div>
-        <Header cart={cart} />
+        <Header
+          cart={cart}
+          incrementCartItemQuantity={this.incrementCartItemQuantity}
+          decrementCartItemQuantity={this.decrementCartItemQuantity}
+        />
         <Switch>
           <Route
             path="/shop"
