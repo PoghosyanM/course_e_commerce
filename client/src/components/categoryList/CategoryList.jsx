@@ -12,7 +12,7 @@ export class CategoryList extends Component {
     return (
       <div className="category-list-content">
         <h1>{category.title}</h1>
-        <div key={category.id} className="category-list-items">
+        <div className="category-list-items">
           {category.items.map((item) => {
             return (
               <Fragment key={item.id}>

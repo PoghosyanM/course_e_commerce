@@ -1,0 +1,30 @@
+.cart-content {
+  .total-count-content {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .cart-items-content {
+    display: grid;
+    gap: 20px;
+    .item-details-content {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      align-items: center;
+      justify-content: center;
+      column-gap: 10px;
+      .anticon {
+        font-size: 30px;
+        cursor: pointer;
+        &:hover {
+          color: rgb(67, 241, 111);
+        }
+      }
+      .item-details {
+        display: grid;
+        justify-items: center;
+        font-size: 18px;
+        row-gap: 10px;
+      }
+    }
+  }
+}

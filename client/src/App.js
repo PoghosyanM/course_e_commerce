@@ -1,17 +1,19 @@
 import React from 'react'
 import Header from './components/header/Header'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import Shop from './pages/shop/Shop'
 import ContactUs from './pages/contactUs/ContactUs'
 import Error404 from './components/error/Error404'
 import Footer from './components/footer/footer'
 import CategoryList from './components/categoryList/CategoryList'
 import axios from 'axios'
+import Cart from './pages/cart/Cart'
 
 class App extends React.Component {
   state = {
     shopData: {},
     cart: [],
+    popupToggler: false,
   }
 
   componentDidMount() {
@@ -24,6 +26,17 @@ class App extends React.Component {
       .catch((error) => {
         console.error(error)
       })
+    const localStorageCart = JSON.parse(localStorage.getItem('cart'))
+
+    if (localStorageCart?.length) {
+      this.setState({
+        cart: localStorageCart,
+      })
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('cart', JSON.stringify(this.state.cart))
   }
 
   addItemToCart = (chosenItem) => {
@@ -73,12 +86,25 @@ class App extends React.Component {
     })
   }
 
+  togglePopupOpen = () => {
+    this.setState({
+      popupToggler: !this.state.popupToggler,
+    })
+  }
+
   render() {
-    const { shopData, cart } = this.state
+    const { shopData, cart, popupToggler } = this.state
+    const { location } = this.props
+
+    if (location.pathname === '/') {
+      return <Redirect to="/shop" />
+    }
     return (
       <div>
         <Header
           cart={cart}
+          popupToggler={popupToggler}
+          togglePopupOpen={this.togglePopupOpen}
           incrementCartItemQuantity={this.incrementCartItemQuantity}
           decrementCartItemQuantity={this.decrementCartItemQuantity}
         />
@@ -98,6 +124,16 @@ class App extends React.Component {
               />
             )}
           />
+          <Route
+            path="/cart"
+            component={() => (
+              <Cart
+                cart={cart}
+                incrementCartItemQuantity={this.incrementCartItemQuantity}
+                decrementCartItemQuantity={this.decrementCartItemQuantity}
+              />
+            )}
+          />
           <Route path="/contactUs" component={ContactUs} />
           <Route component={Error404} />
         </Switch>
@@ -107,4 +143,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default withRouter(App)
