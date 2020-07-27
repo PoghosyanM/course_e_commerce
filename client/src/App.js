@@ -8,6 +8,7 @@ import Footer from './components/footer/footer'
 import CategoryList from './components/categoryList/CategoryList'
 import axios from 'axios'
 import Cart from './pages/cart/Cart'
+import Admin from './pages/admin/Admin'
 
 class App extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class App extends React.Component {
   componentDidMount() {
     axios('/shop')
       .then((response) => {
+        console.log(response)
         this.setState({
           shopData: response.data,
         })
@@ -92,6 +94,12 @@ class App extends React.Component {
     })
   }
 
+  updateShopData = (newShopData) => {
+    this.setState({
+      shopData: newShopData,
+    })
+  }
+
   render() {
     const { shopData, cart, popupToggler } = this.state
     const { location } = this.props
@@ -133,6 +141,10 @@ class App extends React.Component {
                 decrementCartItemQuantity={this.decrementCartItemQuantity}
               />
             )}
+          />
+          <Route
+            path="/admin"
+            component={() => <Admin updateShopData={this.updateShopData} />}
           />
           <Route path="/contactUs" component={ContactUs} />
           <Route component={Error404} />

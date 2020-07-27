@@ -18,6 +18,9 @@ const Header = ({
         <img width="50" src={shopLogo} alt="Shop" />
       </Link>
       <div className="links">
+        <NavLink className="link" activeClassName="active" to="/admin">
+          Admin
+        </NavLink>
         <NavLink className="link" activeClassName="active" to="/shop">
           Shop
         </NavLink>
