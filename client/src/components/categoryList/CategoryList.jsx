@@ -4,7 +4,7 @@ import CategoryListItem from '../categoryListItem/CategoryListItem'
 
 export class CategoryList extends Component {
   render() {
-    const { match, shopData, addItemToCart } = this.props
+    const { match, shopData } = this.props
     const category = shopData[match.params.category]
     if (!category) {
       return null
@@ -16,7 +16,7 @@ export class CategoryList extends Component {
           {category.items.map((item) => {
             return (
               <Fragment key={item.id}>
-                <CategoryListItem addItemToCart={addItemToCart} item={item} />
+                <CategoryListItem item={item} />
               </Fragment>
             )
           })}

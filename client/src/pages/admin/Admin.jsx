@@ -21,28 +21,25 @@ class Admin extends React.Component {
     })
   }
 
-  submitForm = (event) => {
+  submitForm = async (event) => {
     event.preventDefault()
     const { name, price, imageUrl, category } = this.state.formData
-    axios
-      .post('/addItem', {
+    try {
+      const response = await axios.post('/addItem', {
         name,
         price,
         imageUrl,
         category,
       })
-      .then((response) => {
-        this.props.updateShopData(response.data)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+      this.props.updateShopData(response.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
     const { name, price, imageUrl, category } = this.state.formData
     const { formData } = this.state
-    console.log(formData)
     const submitButtonState =
       name.trim() && price.trim() && imageUrl.trim() && category.trim()
     return (
@@ -56,8 +53,8 @@ class Admin extends React.Component {
             <option value="hats">Hats</option>
             <option value="sneakers">Sneakers</option>
             <option value="jackets">Jackets</option>
-            <option value="womens">Women</option>
-            <option value="mens">Men</option>
+            <option value="women">Women</option>
+            <option value="men">Men</option>
           </select>
           <input
             type="text"

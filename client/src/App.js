@@ -9,18 +9,18 @@ import CategoryList from './components/categoryList/CategoryList'
 import axios from 'axios'
 import Cart from './pages/cart/Cart'
 import Admin from './pages/admin/Admin'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
 
 class App extends React.Component {
   state = {
     shopData: {},
     cart: [],
-    popupToggler: false,
   }
 
   componentDidMount() {
     axios('/shop')
       .then((response) => {
-        console.log(response)
         this.setState({
           shopData: response.data,
         })
@@ -39,19 +39,6 @@ class App extends React.Component {
 
   componentDidUpdate() {
     localStorage.setItem('cart', JSON.stringify(this.state.cart))
-  }
-
-  addItemToCart = (chosenItem) => {
-    const isExistChosenItemInCart = this.state.cart.some(
-      (item) => item.id === chosenItem.id
-    )
-    if (isExistChosenItemInCart) {
-      return
-    }
-
-    this.setState({
-      cart: [...this.state.cart, { ...chosenItem, quantity: 1 }],
-    })
   }
 
   incrementCartItemQuantity = (chosenItem) => {
@@ -88,12 +75,6 @@ class App extends React.Component {
     })
   }
 
-  togglePopupOpen = () => {
-    this.setState({
-      popupToggler: !this.state.popupToggler,
-    })
-  }
-
   updateShopData = (newShopData) => {
     this.setState({
       shopData: newShopData,
@@ -108,49 +89,44 @@ class App extends React.Component {
       return <Redirect to="/shop" />
     }
     return (
-      <div>
-        <Header
-          cart={cart}
-          popupToggler={popupToggler}
-          togglePopupOpen={this.togglePopupOpen}
-          incrementCartItemQuantity={this.incrementCartItemQuantity}
-          decrementCartItemQuantity={this.decrementCartItemQuantity}
-        />
-        <Switch>
-          <Route
-            path="/shop"
-            component={() => <Shop shopData={shopData} />}
-            exact
+      <Provider store={store}>
+        <div>
+          <Header
+            incrementCartItemQuantity={this.incrementCartItemQuantity}
+            decrementCartItemQuantity={this.decrementCartItemQuantity}
           />
-          <Route
-            path="/shop/:category"
-            component={(props) => (
-              <CategoryList
-                addItemToCart={this.addItemToCart}
-                shopData={shopData}
-                {...props}
-              />
-            )}
-          />
-          <Route
-            path="/cart"
-            component={() => (
-              <Cart
-                cart={cart}
-                incrementCartItemQuantity={this.incrementCartItemQuantity}
-                decrementCartItemQuantity={this.decrementCartItemQuantity}
-              />
-            )}
-          />
-          <Route
-            path="/admin"
-            component={() => <Admin updateShopData={this.updateShopData} />}
-          />
-          <Route path="/contactUs" component={ContactUs} />
-          <Route component={Error404} />
-        </Switch>
-        <Footer />
-      </div>
+          <Switch>
+            <Route
+              path="/shop"
+              component={() => <Shop shopData={shopData} />}
+              exact
+            />
+            <Route
+              path="/shop/:category"
+              component={(props) => (
+                <CategoryList shopData={shopData} {...props} />
+              )}
+            />
+            <Route
+              path="/cart"
+              component={() => (
+                <Cart
+                  cart={cart}
+                  incrementCartItemQuantity={this.incrementCartItemQuantity}
+                  decrementCartItemQuantity={this.decrementCartItemQuantity}
+                />
+              )}
+            />
+            <Route
+              path="/admin"
+              component={() => <Admin updateShopData={this.updateShopData} />}
+            />
+            <Route path="/contactUs" component={ContactUs} />
+            <Route component={Error404} />
+          </Switch>
+          <Footer />
+        </div>
+      </Provider>
     )
   }
 }

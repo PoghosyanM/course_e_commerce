@@ -1,7 +1,9 @@
 import React from 'react'
 import './categoryListItem.scss'
+import { connect } from 'react-redux'
+import { addCartItemActionCreator } from '../../redux/shopReducer'
 
-const CategoryListItem = ({ item, addItemToCart }) => {
+const CategoryListItem = ({ item, addCartItem }) => {
   const { name, imageUrl, price } = item
   return (
     <div className="category-list-item-content">
@@ -10,7 +12,7 @@ const CategoryListItem = ({ item, addItemToCart }) => {
         <img src={imageUrl} alt={name} />
         <button
           onClick={() => {
-            addItemToCart(item)
+            addCartItem(item)
           }}
           className="add-to-cart-button"
         >
@@ -22,4 +24,8 @@ const CategoryListItem = ({ item, addItemToCart }) => {
   )
 }
 
-export default CategoryListItem
+const mapDispatchToProps = (dispatch) => ({
+  addCartItem: (itemToAdd) => dispatch(addCartItemActionCreator(itemToAdd)),
+})
+
+export default connect(null, mapDispatchToProps)(CategoryListItem)
