@@ -39,7 +39,6 @@ class Admin extends React.Component {
 
   render() {
     const { name, price, imageUrl, category } = this.state.formData
-    const { formData } = this.state
     const submitButtonState =
       name.trim() && price.trim() && imageUrl.trim() && category.trim()
     return (

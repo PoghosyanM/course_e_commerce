@@ -5,25 +5,11 @@ import { ShoppingCartOutlined } from '@ant-design/icons'
 import './header.scss'
 import CartPopup from '../cartPopup/CartPopup'
 import { connect } from 'react-redux'
+import { togglePopupActionCreator } from '../../redux/headerReducer'
 
 class Header extends React.Component {
-  state = {
-    popupToggler: false,
-  }
-
-  togglePopupOpen = () => {
-    this.setState({
-      popupToggler: !this.state.popupToggler,
-    })
-  }
-
   render() {
-    const {
-      cart,
-      incrementCartItemQuantity,
-      decrementCartItemQuantity,
-    } = this.props
-    const { popupToggler } = this.state
+    const { cart, togglePopup, popupToggler } = this.props
     return (
       <div className="header">
         <Link to="/shop">
@@ -50,14 +36,8 @@ class Header extends React.Component {
           </NavLink>
           <div className="shopping-cart-content">
             <span className="chosen-items-count">{cart.length}</span>
-            <ShoppingCartOutlined onClick={() => this.togglePopupOpen()} />
-            {popupToggler && (
-              <CartPopup
-                decrementCartItemQuantity={decrementCartItemQuantity}
-                incrementCartItemQuantity={incrementCartItemQuantity}
-                cart={cart}
-              />
-            )}
+            <ShoppingCartOutlined onClick={togglePopup} />
+            {popupToggler && <CartPopup />}
           </div>
         </div>
       </div>
@@ -66,10 +46,14 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state, '=======')
   return {
     cart: state.shop.cart,
+    popupToggler: state.header.popupToggler,
   }
 }
 
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = (dispatch) => ({
+  togglePopup: () => dispatch(togglePopupActionCreator()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

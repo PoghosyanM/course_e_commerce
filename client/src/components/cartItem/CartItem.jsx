@@ -1,7 +1,12 @@
 import React from 'react'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { connect } from 'react-redux'
+import {
+  incrementCartItemQuantityAC,
+  decrementCartItemQuantityAC,
+} from '../../redux/shopReducer'
 
-const CartPopupItem = ({
+const CartItem = ({
   decrementCartItemQuantity,
   incrementCartItemQuantity,
   item,
@@ -24,4 +29,11 @@ const CartPopupItem = ({
   )
 }
 
-export default CartPopupItem
+const mapDispatchToProps = (dispatch) => ({
+  incrementCartItemQuantity: (itemToAddQuantity) =>
+    dispatch(incrementCartItemQuantityAC(itemToAddQuantity)),
+  decrementCartItemQuantity: (itemToDecreaseQuantity) =>
+    dispatch(decrementCartItemQuantityAC(itemToDecreaseQuantity)),
+})
+
+export default connect(null, mapDispatchToProps)(CartItem)

@@ -1,12 +1,9 @@
 import React, { Fragment } from 'react'
 import CartItem from '../cartItem/CartItem'
 import './cartPopup.scss'
+import { connect } from 'react-redux'
 
-const CartPopup = ({
-  decrementCartItemQuantity,
-  incrementCartItemQuantity,
-  cart,
-}) => {
+const CartPopup = ({ cart }) => {
   if (!cart.length) {
     return (
       <div className="cart-popup-content">
@@ -30,12 +27,7 @@ const CartPopup = ({
       <div className="cart-popup">
         {cart.map((item) => (
           <Fragment key={item.id}>
-            <CartItem
-              decrementCartItemQuantity={decrementCartItemQuantity}
-              incrementCartItemQuantity={incrementCartItemQuantity}
-              item={item}
-              imageWidth={70}
-            />
+            <CartItem item={item} imageWidth={70} />
           </Fragment>
         ))}
       </div>
@@ -43,4 +35,10 @@ const CartPopup = ({
   )
 }
 
-export default CartPopup
+const mapStateToProps = (state) => {
+  return {
+    cart: state.shop.cart,
+  }
+}
+
+export default connect(mapStateToProps)(CartPopup)
