@@ -19,16 +19,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getShopData()
-    // axios('/shop')
-    //   .then((response) => {
-    //     this.setState({
-    //       shopData: response.data,
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     console.error(error)
-    //   })
+    // this.props.getShopData()
+    axios('/shop')
+      .then((response) => {
+        this.setState({
+          shopData: response.data,
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
     const localStorageCart = JSON.parse(localStorage.getItem('cart'))
 
     // if (localStorageCart?.length) {
