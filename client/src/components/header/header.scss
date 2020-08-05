@@ -4,22 +4,24 @@
   justify-content: space-between;
   padding: 16px 24px;
   align-items: center;
+  background-color: #494949;
+  box-shadow: 0 1px 3px #19e619;
   .links {
     display: grid;
     grid-auto-flow: column;
     column-gap: 20px;
     align-items: center;
     .link {
-      color: rgb(214, 29, 29);
+      color: #ffffff;
       text-decoration: none;
       font-weight: bold;
     }
     .active {
-      color: rgb(3, 115, 143);
+      color: #1ae51a;
     }
     .anticon {
       font-size: 35px;
-      color: #5f9ea0;
+      color: #1ae51a;
       outline: none;
     }
   }
@@ -30,12 +32,12 @@
       min-width: 20px;
       right: -5px;
       top: -5px;
-      background-color: #f58e69;
+      background-color: #ffffff;
       border-radius: 50%;
       display: inline-block;
       text-align: center;
       font-weight: 500;
-      color: #ffffff;
+      color: #494949;
     }
   }
 }

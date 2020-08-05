@@ -4,6 +4,15 @@ import './Cart.scss'
 import { connect } from 'react-redux'
 
 const Cart = ({ cart }) => {
+  if (!cart.length) {
+    return (
+      <div className="cart-content">
+        <div className="empty">
+          <h2>Cart Is Empty</h2>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="cart-content">
       <div className="total-count-content">

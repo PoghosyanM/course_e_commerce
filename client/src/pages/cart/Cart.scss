@@ -1,4 +1,10 @@
 .cart-content {
+  .empty {
+    height: 100%;
+    display: grid;
+    place-content: center;
+    color: #b5bdbd;
+  }
   .total-count-content {
     text-align: center;
     margin-bottom: 50px;

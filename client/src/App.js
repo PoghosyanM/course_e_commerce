@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './components/header/Header'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import Shop from './pages/shop/Shop'
@@ -11,28 +11,18 @@ import Admin from './pages/admin/Admin'
 import { connect } from 'react-redux'
 import { getShopData } from './redux/shopReducer'
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.getShopData()
-    // const localStorageCart = JSON.parse(localStorage.getItem('cart'))
+const App = ({ getShopData, location }) => {
+  useEffect(() => {
+    getShopData()
+  }, [getShopData])
 
-    // if (localStorageCart?.length) {
-
-    // }
+  if (location.pathname === '/') {
+    return <Redirect to="/shop" />
   }
-
-  componentDidUpdate() {
-    // localStorage.setItem('cart', JSON.stringify(this.state.cart))
-  }
-
-  render() {
-    const { location } = this.props
-    if (location.pathname === '/') {
-      return <Redirect to="/shop" />
-    }
-    return (
-      <div>
-        <Header />
+  return (
+    <div>
+      <Header />
+      <main className="routes-content">
         <Switch>
           <Route path="/shop" component={Shop} exact />
           <Route path="/shop/:category" component={CategoryList} />
@@ -41,10 +31,10 @@ class App extends React.Component {
           <Route path="/contactUs" component={ContactUs} />
           <Route component={Error404} />
         </Switch>
-        <Footer />
-      </div>
-    )
-  }
+      </main>
+      <Footer />
+    </div>
+  )
 }
 
 const mapDispatchToProps = (dispatch) => {

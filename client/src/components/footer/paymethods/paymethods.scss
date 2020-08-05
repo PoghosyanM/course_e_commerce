@@ -1,17 +1,12 @@
-.paymethods{
+.paymethods {
   background-color: #494949;
-  grid-template-columns: auto auto;
-  display: grid;
-  align-items: center;
-  justify-content: space-around;
-  border-block-start: 1px solid;
-  border-color: #1be51a;
-  padding: 20px 0;
+  box-shadow: 0 -1px 3px #19e619;
+  padding: 20px 24px;
 }
-.privacy{
+.privacy {
   color: #1ae51a;
 }
 
-.copyright{
-  color: white;
+.copyright {
+  color: #ffffff;
 }
