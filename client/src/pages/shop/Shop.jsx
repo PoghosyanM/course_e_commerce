@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import './shop.scss'
 import CategoryItem from '../../components/categoryItem/CategoryItem'
+import { connect } from 'react-redux'
 
 class Shop extends React.Component {
   render() {
@@ -28,4 +29,8 @@ class Shop extends React.Component {
   }
 }
 
-export default Shop
+const mapStateToProps = (state) => ({
+  shopData: state.shop.shopData,
+})
+
+export default connect(mapStateToProps)(Shop)

@@ -19,12 +19,3 @@ export const headerReducer = (state = INITIAL_STATE, action) => {
 export const togglePopupActionCreator = () => ({
   type: TOGGLE_POPUP,
 })
-
-const asyncActionCreator = function (payload) {
-  return function (dispatch) {
-    return dispatch({
-      type: 'x',
-      value: payload,
-    })
-  }
-}

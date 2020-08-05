@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import './categoryList.scss'
 import CategoryListItem from '../categoryListItem/CategoryListItem'
+import { connect } from 'react-redux'
 
 export class CategoryList extends Component {
   render() {
@@ -27,4 +28,8 @@ export class CategoryList extends Component {
   }
 }
 
-export default CategoryList
+const mapStateToProps = (state) => ({
+  shopData: state.shop.shopData,
+})
+
+export default connect(mapStateToProps)(CategoryList)

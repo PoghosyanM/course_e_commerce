@@ -1,6 +1,7 @@
 import React from 'react'
-import axios from 'axios'
 import './admin.scss'
+import { connect } from 'react-redux'
+import { setShopData } from '../../redux/shopReducer'
 
 class Admin extends React.Component {
   state = {
@@ -23,18 +24,15 @@ class Admin extends React.Component {
 
   submitForm = async (event) => {
     event.preventDefault()
-    const { name, price, imageUrl, category } = this.state.formData
-    try {
-      const response = await axios.post('/addItem', {
-        name,
-        price,
-        imageUrl,
-        category,
-      })
-      this.props.updateShopData(response.data)
-    } catch (error) {
-      console.log(error)
-    }
+    this.props.setShopData(this.state.formData)
+    this.setState({
+      formData: {
+        category: 'hats',
+        name: '',
+        price: '',
+        imageUrl: '',
+      },
+    })
   }
 
   render() {
@@ -89,4 +87,9 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin
+const mapDispatchToProps = (dispatch) => ({
+  setShopData: ({ name, price, imageUrl, category }) =>
+    dispatch(setShopData({ name, price, imageUrl, category })),
+})
+
+export default connect(null, mapDispatchToProps)(Admin)
