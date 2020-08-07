@@ -1,27 +1,29 @@
+@import './../../common.scss';
+
 .header {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-between;
-  padding: 16px 24px;
+  @include setFontAndPadding(16px 24px, 0, 0);
   align-items: center;
   background-color: #494949;
-  box-shadow: 0 1px 3px #19e619;
+  box-shadow: 0 1px 3px $primaryColor;
   .links {
     display: grid;
     grid-auto-flow: column;
     column-gap: 20px;
     align-items: center;
     .link {
-      color: #ffffff;
       text-decoration: none;
       font-weight: bold;
+      @include setFontAndPadding(0 3px, 500, #ffffff);
     }
     .active {
-      color: #1ae51a;
+      color: $primaryColor;
     }
     .anticon {
       font-size: 35px;
-      color: #1ae51a;
+      color: $primaryColor;
       outline: none;
     }
   }

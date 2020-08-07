@@ -1,0 +1,11 @@
+$primaryColor: #19e619;
+
+@mixin setFontAndPadding($padding, $fontWeight, $color) {
+  padding: $padding;
+  @if $fontWeight != 0 {
+    font-weight: $fontWeight;
+  }
+  @if $color != 0 {
+    color: $color;
+  }
+}

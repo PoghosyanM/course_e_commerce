@@ -1,10 +1,12 @@
+@import './../../../common.scss';
+
 .paymethods {
   background-color: #494949;
-  box-shadow: 0 -1px 3px #19e619;
+  box-shadow: 0 -1px 3px $primaryColor;
   padding: 20px 24px;
 }
 .privacy {
-  color: #1ae51a;
+  color: $primaryColor;
 }
 
 .copyright {

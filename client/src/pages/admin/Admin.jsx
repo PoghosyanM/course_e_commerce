@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
-import './admin.scss'
 import { connect } from 'react-redux'
 import { setShopData } from '../../redux/shopReducer'
+import {
+  StyledInput,
+  StyledSelect,
+  SubmitButton,
+  AddItemForm,
+  AdminContent,
+} from './elements'
 
 const Admin = ({ setShopData }) => {
   const [formData, setFormData] = useState({
@@ -33,45 +39,51 @@ const Admin = ({ setShopData }) => {
   const submitButtonState =
     name.trim() && price.trim() && imageUrl.trim() && category.trim()
   return (
-    <div className="admin-content">
-      <form onSubmit={submitForm} className="add-shop-item">
-        <select value={category} name="category" onChange={updateFormData}>
+    <AdminContent>
+      <AddItemForm onSubmit={submitForm}>
+        <StyledSelect
+          value={category}
+          name="category"
+          onChange={updateFormData}
+          isGreen
+        >
           <option value="hats">Hats</option>
           <option value="sneakers">Sneakers</option>
           <option value="jackets">Jackets</option>
           <option value="women">Women</option>
           <option value="men">Men</option>
-        </select>
-        <input
+        </StyledSelect>
+        <StyledInput
           type="text"
           name="name"
           value={name}
           placeholder="Name"
           onChange={updateFormData}
         />
-        <input
+        <StyledInput
           type="number"
           name="price"
           value={price}
           placeholder="Price"
           onChange={updateFormData}
         />
-        <input
+        <StyledInput
           type="text"
           name="imageUrl"
           value={imageUrl}
           placeholder="Image URL"
           onChange={updateFormData}
         />
-        <button
+        <SubmitButton
           disabled={!submitButtonState}
           className="submit-button"
           type="submit"
+          href=""
         >
           Add Item
-        </button>
-      </form>
-    </div>
+        </SubmitButton>
+      </AddItemForm>
+    </AdminContent>
   )
 }
 
